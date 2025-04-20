@@ -18,6 +18,7 @@ class DefaultView extends StatefulWidget {
 class _DefaultViewState extends State<DefaultView> {
   final List<File> _images = [];
   File? _generatedPdf;
+  String? _error;
 
   Future<void> _pickImages() async {
     final files = await openFiles(
@@ -37,24 +38,50 @@ class _DefaultViewState extends State<DefaultView> {
   }
 
   Future<void> _generatePdf() async {
-    final pdf = pw.Document();
+    _error = null;
+    try {
+      final pdf = pw.Document();
 
-    for (var image in _images) {
-      final imageBytes = await image.readAsBytes();
-      final img = pw.MemoryImage(imageBytes);
+      for (var image in _images) {
+        final imageBytes = await image.readAsBytes();
+        final img = pw.MemoryImage(imageBytes);
 
-      pdf.addPage(
-        pw.Page(build: (pw.Context context) => pw.Center(child: pw.Image(img))),
-      );
+        pdf.addPage(
+          pw.Page(
+            build: (pw.Context context) => pw.Center(child: pw.Image(img)),
+          ),
+        );
+      }
+
+      final outputDir = await getTemporaryDirectory();
+      final file = File("${outputDir.path}/output.pdf");
+      await file.writeAsBytes(await pdf.save());
+
+      setState(() {
+        _generatedPdf = file;
+      });
+    } catch (error) {
+      setState(() {
+        _error = error.toString();
+      });
     }
 
-    final outputDir = await getTemporaryDirectory();
-    final file = File("${outputDir.path}/output.pdf");
-    await file.writeAsBytes(await pdf.save());
-
-    setState(() {
-      _generatedPdf = file;
-    });
+    if (_error != null) {
+      showDialog(
+        context: context,
+        builder:
+            (_) => ContentDialog(
+              title: const Text('An error occured'),
+              content: Text(_error!),
+              actions: [
+                Button(
+                  child: const Text('Close'),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+      );
+    }
   }
 
   void _moveUp(int index) {

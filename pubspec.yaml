@@ -17,6 +17,7 @@ dependencies:
   fluent_ui: ^4.11.3
   system_theme: ^3.1.2
   file_selector: 1.0.3
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
