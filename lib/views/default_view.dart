@@ -51,8 +51,6 @@ class _DefaultViewState extends State<DefaultView> {
     setState(() {
       _generatedPdf = file;
     });
-
-    OpenFile.open(file.path);
   }
 
   @override
@@ -110,6 +108,14 @@ class _DefaultViewState extends State<DefaultView> {
                 icon: const Icon(Icons.picture_as_pdf),
                 label: const Text("Convert to PDF"),
                 onPressed: _images.isEmpty ? null : _generatePdf,
+              ),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.preview),
+                label: const Text("Preview PDF"),
+                onPressed:
+                    _generatedPdf == null
+                        ? null
+                        : () => OpenFile.open(_generatedPdf?.path),
               ),
               ElevatedButton.icon(
                 icon: const Icon(Icons.download),

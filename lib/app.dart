@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quicksnap2pdf/views/Default.dart';
+import 'package:quicksnap2pdf/views/default_view.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
