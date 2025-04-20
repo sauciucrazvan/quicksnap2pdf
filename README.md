@@ -3,7 +3,7 @@
     <b>Quicksnap to PDF</b><br />
     a portable Windows tool to quickly convert different<br />media to a PDF file with <b>no limit</b> and <b>no compression</b>.
     <br />
-    <a href="https://youtu.be/Wm-SVsl-_A8">demonstration</a> // <a href="https://github.com/sauciucrazvan/quicksnap2pdf/releases">releases</a>
+    <a href="https://youtu.be/Wm-SVsl-_A8" target="_blank">demonstration</a> // <a href="https://github.com/sauciucrazvan/quicksnap2pdf/releases">releases</a>
 </p>
 
 <br />
@@ -20,6 +20,9 @@ The following packages are required to run the application:
 
 #### 3rd party licenses
 - [Fluent UI](https://github.com/microsoft/fluentui) - made by Microsoft is under the MIT license.
+
+### why?
+because I needed it.
 
 <br />
 
