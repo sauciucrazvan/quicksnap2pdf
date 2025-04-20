@@ -9,12 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  file_picker: ^10.1.2
   printing: ^5.14.2
   desktop_drop: ^0.6.0
   open_file: ^3.5.10
   pdf: ^3.11.3
   path_provider: ^2.1.5
+  fluent_ui: ^4.11.3
+  system_theme: ^3.1.2
+  file_selector: 1.0.3
 
 dev_dependencies:
   flutter_test:
