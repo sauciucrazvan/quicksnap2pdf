@@ -57,6 +57,24 @@ class _DefaultViewState extends State<DefaultView> {
     });
   }
 
+  void _moveUp(int index) {
+    if (index > 0) {
+      setState(() {
+        final item = _images.removeAt(index);
+        _images.insert(index - 1, item);
+      });
+    }
+  }
+
+  void _moveDown(int index) {
+    if (index < _images.length - 1) {
+      setState(() {
+        final item = _images.removeAt(index);
+        _images.insert(index + 1, item);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage(
@@ -67,7 +85,6 @@ class _DefaultViewState extends State<DefaultView> {
           style: FluentTheme.of(context).typography.title,
         ),
       ),
-
       content: Column(
         children: [
           Expanded(
@@ -102,18 +119,47 @@ class _DefaultViewState extends State<DefaultView> {
             ),
           ),
           if (_images.isNotEmpty)
+            Text(
+              "Attached Files",
+              style: FluentTheme.of(context).typography.caption,
+            ),
+          if (_images.isNotEmpty)
             Expanded(
               child: ListView.builder(
                 itemCount: _images.length,
                 itemBuilder: (context, index) {
+                  final fileName =
+                      _images[index].path.split(Platform.pathSeparator).last;
                   return ListTile(
-                    title: Text(
-                      _images[index].path.split(Platform.pathSeparator).last,
+                    key: ValueKey(_images[index].path),
+                    title: Text(fileName, overflow: TextOverflow.ellipsis),
+                    onPressed: () => OpenFile.open(_images[index].path),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(FluentIcons.up),
+                          onPressed: () => _moveUp(index),
+                        ),
+                        IconButton(
+                          icon: const Icon(FluentIcons.down),
+                          onPressed: () => _moveDown(index),
+                        ),
+                        IconButton(
+                          icon: Icon(FluentIcons.delete, color: Colors.red),
+                          onPressed: () {
+                            setState(() {
+                              _images.removeAt(index);
+                            });
+                          },
+                        ),
+                      ],
                     ),
                   );
                 },
               ),
             ),
+          const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -174,7 +220,7 @@ class _DefaultViewState extends State<DefaultView> {
                                     ),
                                     actions: [
                                       Button(
-                                        child: const Text('OK'),
+                                        child: const Text('Done'),
                                         onPressed: () => Navigator.pop(context),
                                       ),
                                     ],
