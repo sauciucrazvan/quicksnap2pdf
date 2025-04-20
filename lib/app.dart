@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 
-import 'package:quicksnap2pdf/views/default_view.dart';
+import 'package:quicksnap2pdf/views/sidebar_view.dart';
 import 'package:system_theme/system_theme.dart';
 
 class MainApp extends StatelessWidget {
@@ -19,7 +19,8 @@ class MainApp extends StatelessWidget {
         brightness: Brightness.dark,
         accentColor: SystemTheme.accentColor.accent.toAccentColor(),
       ),
-      home: const DefaultView(),
+
+      home: const SidebarView(),
     );
   }
 }

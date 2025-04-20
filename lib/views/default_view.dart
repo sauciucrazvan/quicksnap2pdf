@@ -80,9 +80,17 @@ class _DefaultViewState extends State<DefaultView> {
     return ScaffoldPage(
       header: Padding(
         padding: const EdgeInsets.only(left: 20),
-        child: Text(
-          'Quicksnap to PDF',
-          style: FluentTheme.of(context).typography.title,
+        child: Column(
+          children: [
+            Text(
+              'Quickly convert your media to PDF.',
+              style: FluentTheme.of(context).typography.subtitle,
+            ),
+            Text(
+              'Accepted formats include: .png, .jpg, .jpeg, .bmp, .gif',
+              style: FluentTheme.of(context).typography.body,
+            ),
+          ],
         ),
       ),
       content: Column(
@@ -121,7 +129,8 @@ class _DefaultViewState extends State<DefaultView> {
           if (_images.isNotEmpty)
             Text(
               "Attached Files",
-              style: FluentTheme.of(context).typography.caption,
+              style: FluentTheme.of(context).typography.body,
+              textAlign: TextAlign.start,
             ),
           if (_images.isNotEmpty)
             Expanded(
