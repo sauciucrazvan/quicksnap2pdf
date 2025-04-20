@@ -16,7 +16,7 @@ The following packages are required to run the application:
 - <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">Microsoft Visual C++ Redistributable</a>
 
 ### licenses
-**Quicksnap to PDF** is licensed under <a href="./LICENSE.md">MIT</a>.
+**Quicksnap to PDF** is licensed under <a href="./LICENSE">MIT</a>.
 
 #### 3rd party licenses
 - [Fluent UI](https://github.com/microsoft/fluentui) - made by Microsoft is under the MIT license.
