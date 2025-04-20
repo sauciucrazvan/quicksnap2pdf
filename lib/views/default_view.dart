@@ -127,10 +127,31 @@ class _DefaultViewState extends State<DefaultView> {
             ),
           ),
           if (_images.isNotEmpty)
-            Text(
-              "Attached Files",
-              style: FluentTheme.of(context).typography.body,
-              textAlign: TextAlign.start,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Attached Files",
+                    style: FluentTheme.of(context).typography.body,
+                    textAlign: TextAlign.start,
+                  ),
+                  Button(
+                    onPressed:
+                        _images.isEmpty
+                            ? null
+                            : () => setState(() => _images.clear()),
+                    child: Row(
+                      children: [
+                        Icon(FluentIcons.delete),
+                        SizedBox(width: 8),
+                        Text("Delete all files"),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           if (_images.isNotEmpty)
             Expanded(
